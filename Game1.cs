@@ -9,8 +9,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Player player;
-    private Texture2D pixel;
-    Enemy enemy;
+
 
     public Game1()
     {
@@ -22,15 +21,16 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-
+       
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        Texture2D texture = Content.Load<Texture2D> ("Images/skep");
         // TODO: use this.Content to load your game content here
+        player = new Player(texture);
     
     }
 
@@ -46,9 +46,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        Texture2D texture = Content.Load<Texture2D>("starwarsx-wing.png");
-
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.White);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
         _spriteBatch.End();

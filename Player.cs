@@ -17,7 +17,7 @@ namespace Alien_Invaders
       public void Update(){
         KeyboardState kState = Keyboard.GetState();
         if(kState.IsKeyDown(Keys.A)) position.X -=3;
-        if(kState.IsKeyDown(Keys.S)) position.Y +=3;
+        if(kState.IsKeyDown(Keys.D)) position.Y +=3;
     }
      public void Draw(SpriteBatch spriteBatch){
         spriteBatch.Draw(texture, position, Color.White);
