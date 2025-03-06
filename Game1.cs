@@ -40,16 +40,18 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-
+        player.Update();
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        Texture2D texture = Content.Load<Texture2D>("");
+        Texture2D texture = Content.Load<Texture2D>("starwarsx-wing.png");
 
         GraphicsDevice.Clear(Color.CornflowerBlue);
-
+        _spriteBatch.Begin();
+        player.Draw(_spriteBatch);
+        _spriteBatch.End();
         // TODO: Add your drawing code here
 
         base.Draw(gameTime);
