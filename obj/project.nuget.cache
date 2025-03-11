@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UqNVEr8suYM=",
+  "dgSpecHash": "qDKEgV7mz9w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\Monogame\\Alien_Invaders.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app\\2.1.30\\microsoft.netcore.app.2.1.30.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.30\\microsoft.netcore.dotnetapphost.2.1.30.nupkg.sha512",

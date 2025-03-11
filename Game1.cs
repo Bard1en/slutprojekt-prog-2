@@ -13,9 +13,12 @@ public class Game1 : Game
 
     public Game1()
     {
-        _graphics = new GraphicsDeviceManager(this);
+        GraphicsDeviceManager graphics;
+        graphics = new GraphicsDeviceManager(this);
+        graphics.ToggleFullScreen();
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+        IsMouseVisible = false;
+        
     }
 
     protected override void Initialize()
@@ -28,7 +31,7 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        Texture2D texture = Content.Load<Texture2D> ("Images/skep");
+        Texture2D texture = Content.Load<Texture2D> ("Images/skeppet");
         // TODO: use this.Content to load your game content here
         player = new Player(texture);
     
@@ -46,7 +49,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.White);
+        GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
         _spriteBatch.End();
