@@ -32,8 +32,9 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Texture2D texture = Content.Load<Texture2D> ("Images/skeppet");
+        Texture2D bulletTexture = Content.Load<Texture2D> ("Images/Bullet");
         // TODO: use this.Content to load your game content here
-        player = new Player(texture);
+        player = new Player(texture, bulletTexture);
     
     }
 
