@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Windows.Forms.VisualStyles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -32,9 +33,10 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Texture2D texture = Content.Load<Texture2D> ("Images/skeppet");
-        Texture2D bulletTexture = Content.Load<Texture2D> ("Images/Bullet");
+        Texture2D bulletTexture = Content.Load<Texture2D> ("Images/Bull1");
+        Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
         // TODO: use this.Content to load your game content here
-        player = new Player(texture, bulletTexture);
+        player = new Player(texture, bulletTexture, minigunTexture);
     
     }
 
@@ -44,7 +46,7 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-        player.Update();
+        player.Update(gameTime);
         base.Update(gameTime);
     }
 
