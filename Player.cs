@@ -27,6 +27,7 @@ namespace Alien_Invaders
     }
       public void Update(GameTime gameTime){
         timeLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        timeLastMinigun += (float)gameTime.ElapsedGameTime.TotalSeconds;
         KeyboardState kState = Keyboard.GetState();
         if(kState.IsKeyDown(Keys.A)) position.X -=5;
         if(kState.IsKeyDown(Keys.D)) position.X +=5;
@@ -35,15 +36,16 @@ namespace Alien_Invaders
                 Shoot();
                 timeLastShot = 0f;  
             }
-        if(kState.IsKeyDown(Keys.B) && timeLastMinigun >= shotCdMinigun)
+        if(kState.IsKeyDown(Keys.LeftShift) && timeLastMinigun >= shotCdMinigun)
             {
                 MinigunShoot();
                 timeLastMinigun = 0f;
             }
-        for(int i = bullets.Count -1; i >= 0; i--){
+            for(int i = bullets.Count -1; i >= 0; i--){
             bullets[i].Update();
             if(!bullets[i].IsActive)bullets.RemoveAt(i);
         }
+        
         
     }
     private void Shoot(){

@@ -8,6 +8,7 @@ namespace Alien_Invaders
         
         private Texture2D texture;
         private Vector2 position;
+        private int DMG = 1;
         private float speed;
         private bool isActive;
 

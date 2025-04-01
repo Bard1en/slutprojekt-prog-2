@@ -4,11 +4,13 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Admin/Documents/GitHub/Lister-av-tabeller/Alien_Invaders/Alien_Invaders/Alien_Invaders/Alien_Invaders/Content/Images/Alienskepp.png</File>
     <File>C:/Users/Admin/Documents/GitHub/Lister-av-tabeller/Alien_Invaders/Alien_Invaders/Alien_Invaders/Alien_Invaders/Content/Images/bull1.png</File>
     <File>C:/Users/Admin/Documents/GitHub/Lister-av-tabeller/Alien_Invaders/Alien_Invaders/Alien_Invaders/Alien_Invaders/Content/Images/Minigun.png</File>
     <File>C:/Users/Admin/Documents/GitHub/Lister-av-tabeller/Alien_Invaders/Alien_Invaders/Alien_Invaders/Alien_Invaders/Content/Images/skeppet.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

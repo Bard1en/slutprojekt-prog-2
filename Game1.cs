@@ -10,6 +10,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Player player;
+    private Enemy enemy;
+
 
 
     public Game1()
@@ -35,8 +37,10 @@ public class Game1 : Game
         Texture2D texture = Content.Load<Texture2D> ("Images/skeppet");
         Texture2D bulletTexture = Content.Load<Texture2D> ("Images/Bull1");
         Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
+        Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
         // TODO: use this.Content to load your game content here
         player = new Player(texture, bulletTexture, minigunTexture);
+        enemy = new Enemy(enemyTexture);
     
     }
 
@@ -48,6 +52,7 @@ public class Game1 : Game
         // TODO: Add your update logic here
         player.Update(gameTime);
         base.Update(gameTime);
+        enemy.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
@@ -55,6 +60,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
+        enemy.Draw(_spriteBatch);
         _spriteBatch.End();
         // TODO: Add your drawing code here
 
