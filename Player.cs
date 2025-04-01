@@ -15,6 +15,8 @@ namespace Alien_Invaders
         private List<MiniGun> minigun;
         private float timeLastShot = 0f;
         private float shotCooldown = 1f;
+        private float shotCdMinigun = 0.1f;
+        private float timeLastMinigun = 0f;
     
        public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture){
         this.texture = texture;
@@ -33,9 +35,10 @@ namespace Alien_Invaders
                 Shoot();
                 timeLastShot = 0f;  
             }
-        if(kState.IsKeyDown(Keys.B))
+        if(kState.IsKeyDown(Keys.B) && timeLastMinigun >= shotCdMinigun)
             {
                 MinigunShoot();
+                timeLastMinigun = 0f;
             }
         for(int i = bullets.Count -1; i >= 0; i--){
             bullets[i].Update();
@@ -49,11 +52,13 @@ namespace Alien_Invaders
          bullets.Add(new Bullet(bulletTexture, bulletPosition));
     }
     private void MinigunShoot(){
-        Vector2 minigunPosition = new Vector2(position.X + 33, position.Y + 20); 
+        Vector2 minigunPosition = new Vector2(position.X + 23, position.Y + 35); //1//
          bullets.Add(new Bullet(minigunTexture, minigunPosition));
-         minigunPosition = new Vector2(position.X + 23, position.Y + 35); 
+         minigunPosition = new Vector2(position.X + 33, position.Y + 27); //2//
          bullets.Add(new Bullet(minigunTexture, minigunPosition));
-         minigunPosition = new Vector2(position.X + 69, position.Y + 35); 
+         minigunPosition = new Vector2(position.X + 59, position.Y + 27); //3//
+         bullets.Add(new Bullet(minigunTexture, minigunPosition));
+         minigunPosition = new Vector2(position.X +69, position.Y + 35); //4//
          bullets.Add(new Bullet(minigunTexture, minigunPosition));
     }
      public void Draw(SpriteBatch spriteBatch){

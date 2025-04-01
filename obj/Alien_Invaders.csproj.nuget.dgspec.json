@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj": {
+    "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj",
         "projectName": "Alien_Invaders",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Lister-av-tabeller\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\Alien_Invaders\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
