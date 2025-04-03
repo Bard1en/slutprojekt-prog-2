@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms.VisualStyles;
+﻿using System.Collections.Generic;
+using System.Windows.Forms.VisualStyles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Player player;
-    private Enemy enemy;
+    List<Enemy> enemies = new List<Enemy>();
 
 
 
@@ -40,7 +41,7 @@ public class Game1 : Game
         Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
         // TODO: use this.Content to load your game content here
         player = new Player(texture, bulletTexture, minigunTexture);
-        enemy = new Enemy(enemyTexture);
+        enemies.Add(new Enemy(enemyTexture));
     
     }
 
@@ -52,7 +53,9 @@ public class Game1 : Game
         // TODO: Add your update logic here
         player.Update(gameTime);
         base.Update(gameTime);
-        enemy.Update(gameTime);
+        foreach(var enemy in enemies)
+            enemy.Update(gameTime);
+        BulletCollision();
     }
 
     protected override void Draw(GameTime gameTime)
@@ -60,10 +63,25 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
-        enemy.Draw(_spriteBatch);
+        foreach(var enemy in enemies)
+            enemy.Draw(_spriteBatch);
         _spriteBatch.End();
         // TODO: Add your drawing code here
 
         base.Draw(gameTime);
+    }
+
+    private void BulletCollision(){
+        for(int i = 0; i < player.Bullets.Count; i++ ){
+            for(int j = 0; j < enemies.Count; j++ ){
+                if(player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox)){
+                    player.Bullets.RemoveAt(i);
+                    enemies.RemoveAt(j);
+                    i--;
+                    break;
+                }
+            }
+        }
+        
     }
 }

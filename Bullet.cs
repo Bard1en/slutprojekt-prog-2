@@ -9,8 +9,11 @@ namespace Alien_Invaders
          private Texture2D texture;
         private Vector2 position;
         private float speed;
-        private bool isActive;
-
+        public bool isActive;
+      
+        private Rectangle hitbox;
+        public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
+        
         public Bullet(Texture2D texture, Vector2 startPosition)
         {
             this.texture = texture;
@@ -18,7 +21,9 @@ namespace Alien_Invaders
             this.speed = 3.5f; 
             this.isActive = true;
         }
-
+        public void Deactivate(){
+            isActive = false;
+        }
         public void Update()
         {
             if (isActive)
@@ -26,7 +31,7 @@ namespace Alien_Invaders
                 position.Y -= speed; 
                 if (position.Y < 0) 
                 {
-                    isActive = false;
+                    Deactivate();
                 }
             }
         }
@@ -39,5 +44,6 @@ namespace Alien_Invaders
             }
         } 
         public bool IsActive => isActive;
+
     }
 }

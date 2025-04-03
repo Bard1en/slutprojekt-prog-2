@@ -17,7 +17,9 @@ namespace Alien_Invaders
         private float shotCooldown = 1f;
         private float shotCdMinigun = 0.1f;
         private float timeLastMinigun = 0f;
+        public int HP = 3;
     
+        public List<Bullet> Bullets{get{return bullets;}}
        public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture){
         this.texture = texture;
         this.bulletTexture = bulletTexture;
@@ -44,9 +46,7 @@ namespace Alien_Invaders
             for(int i = bullets.Count -1; i >= 0; i--){
             bullets[i].Update();
             if(!bullets[i].IsActive)bullets.RemoveAt(i);
-        }
-        
-        
+        }  
     }
     private void Shoot(){
         

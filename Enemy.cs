@@ -8,8 +8,8 @@ namespace Alien_Invaders
     {
         private Texture2D enemyTexture; 
         private Vector2 enemyPosition;
-        private int HP = 1;
-        
+        private Rectangle hitbox;
+        public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
 
         public Enemy(Texture2D enemyTexture){
         this.enemyTexture = enemyTexture;
@@ -21,5 +21,6 @@ namespace Alien_Invaders
          public void Draw(SpriteBatch spriteBatch){
         spriteBatch.Draw(enemyTexture, enemyPosition, Color.White);
          }
+         
     }
 }
