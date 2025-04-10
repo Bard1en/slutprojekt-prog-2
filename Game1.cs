@@ -41,8 +41,38 @@ public class Game1 : Game
         Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
         // TODO: use this.Content to load your game content here
         player = new Player(texture, bulletTexture, minigunTexture);
-        enemies.Add(new Enemy(enemyTexture));
-    
+        enemies.Add(new Enemy(enemyTexture, new Vector2( 0, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2( 50, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(100, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(150, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(200, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(250, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(300, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(350, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(400, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(450, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(500, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(550, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(600, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(650, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(700, 25)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(750, 25)));   
+          enemies.Add(new Enemy(enemyTexture, new Vector2( 0, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2( 50, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(100, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(150, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(200, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(250, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(300, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(350, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(400, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(450, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(500, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(550, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(600, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(650, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(700, 75)));
+        enemies.Add(new Enemy(enemyTexture, new Vector2(750, 75))); 
     }
 
     protected override void Update(GameTime gameTime)
@@ -52,10 +82,12 @@ public class Game1 : Game
 
         // TODO: Add your update logic here
         player.Update(gameTime);
-        base.Update(gameTime);
-        foreach(var Enemy in enemies)
-            Enemy.Update(gameTime);
+
+        foreach(var enemy in enemies)
+            enemy.Update(gameTime);
         BulletCollision();
+
+        base.Update(gameTime); 
     }
 
     protected override void Draw(GameTime gameTime)
@@ -63,8 +95,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
-         foreach(var Enemy in enemies)
-            Enemy.Draw(_spriteBatch);
+         foreach(var enemy in enemies)
+            enemy.Draw(_spriteBatch);
         _spriteBatch.End();
         // TODO: Add your drawing code here
 
