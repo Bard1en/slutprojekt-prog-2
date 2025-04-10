@@ -19,7 +19,7 @@ namespace Alien_Invaders
 
         }
          public void Draw(SpriteBatch spriteBatch){
-        spriteBatch.Draw(enemyTexture, enemyPosition, Color.White);
+                spriteBatch.Draw(enemyTexture, enemyPosition, Color.White);
          }
          
     }

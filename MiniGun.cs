@@ -8,9 +8,10 @@ namespace Alien_Invaders
         
         private Texture2D texture;
         private Vector2 position;
-        private int DMG = 1;
         private float speed;
         private bool isActive;
+        private Rectangle hitbox;
+        public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
 
         public MiniGun(Texture2D texture, Vector2 startPosition)
         {

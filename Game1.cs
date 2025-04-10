@@ -53,8 +53,8 @@ public class Game1 : Game
         // TODO: Add your update logic here
         player.Update(gameTime);
         base.Update(gameTime);
-        foreach(var enemy in enemies)
-            enemy.Update(gameTime);
+        foreach(var Enemy in enemies)
+            Enemy.Update(gameTime);
         BulletCollision();
     }
 
@@ -63,8 +63,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
         player.Draw(_spriteBatch);
-        foreach(var enemy in enemies)
-            enemy.Draw(_spriteBatch);
+         foreach(var Enemy in enemies)
+            Enemy.Draw(_spriteBatch);
         _spriteBatch.End();
         // TODO: Add your drawing code here
 
@@ -75,7 +75,7 @@ public class Game1 : Game
         for(int i = 0; i < player.Bullets.Count; i++ ){
             for(int j = 0; j < enemies.Count; j++ ){
                 if(player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox)){
-                    player.Bullets.RemoveAt(i);
+                    player.Bullets[i].Deactivate();
                     enemies.RemoveAt(j);
                     i--;
                     break;

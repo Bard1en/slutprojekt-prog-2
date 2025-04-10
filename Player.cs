@@ -17,7 +17,7 @@ namespace Alien_Invaders
         private float shotCooldown = 1f;
         private float shotCdMinigun = 0.1f;
         private float timeLastMinigun = 0f;
-        public int HP = 3;
+        private Rectangle hitbox;
     
         public List<Bullet> Bullets{get{return bullets;}}
        public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture){

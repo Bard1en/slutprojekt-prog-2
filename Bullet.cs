@@ -20,6 +20,7 @@ namespace Alien_Invaders
             this.position = startPosition;
             this.speed = 3.5f; 
             this.isActive = true;
+            Hitbox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
         public void Deactivate(){
             isActive = false;
@@ -29,6 +30,9 @@ namespace Alien_Invaders
             if (isActive)
             {
                 position.Y -= speed; 
+
+                Hitbox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+
                 if (position.Y < 0) 
                 {
                     Deactivate();
