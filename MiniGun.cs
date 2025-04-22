@@ -17,7 +17,7 @@ namespace Alien_Invaders
         {
             this.texture = texture;
             this.position = startPosition;
-            this.speed = 5f; 
+            this.speed = 60f; 
             this.isActive = true;
         }
 

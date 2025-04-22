@@ -18,6 +18,7 @@ namespace Alien_Invaders
         private float shotCdMinigun = 0.1f;
         private float timeLastMinigun = 0f;
         private Rectangle hitbox;
+        public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
     
         public List<Bullet> Bullets{get{return bullets;}}
        public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture){
@@ -51,17 +52,17 @@ namespace Alien_Invaders
     private void Shoot(){
         
          Vector2 bulletPosition = new Vector2(position.X + texture.Width / 2 - 13, position.Y); 
-         bullets.Add(new Bullet(bulletTexture, bulletPosition));
+         bullets.Add(new Bullet(bulletTexture, bulletPosition,10));
     }
     private void MinigunShoot(){
         Vector2 minigunPosition = new Vector2(position.X + 23, position.Y + 35); //1//
-         bullets.Add(new Bullet(minigunTexture, minigunPosition));
+         bullets.Add(new Bullet(minigunTexture, minigunPosition,1));
          minigunPosition = new Vector2(position.X + 33, position.Y + 27); //2//
-         bullets.Add(new Bullet(minigunTexture, minigunPosition));
+         bullets.Add(new Bullet(minigunTexture, minigunPosition,1));
          minigunPosition = new Vector2(position.X + 59, position.Y + 27); //3//
-         bullets.Add(new Bullet(minigunTexture, minigunPosition));
+         bullets.Add(new Bullet(minigunTexture, minigunPosition,1));
          minigunPosition = new Vector2(position.X +69, position.Y + 35); //4//
-         bullets.Add(new Bullet(minigunTexture, minigunPosition));
+         bullets.Add(new Bullet(minigunTexture, minigunPosition,1));
     }
      public void Draw(SpriteBatch spriteBatch){
         spriteBatch.Draw(texture, position, Color.White);

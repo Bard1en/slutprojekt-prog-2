@@ -41,38 +41,15 @@ public class Game1 : Game
         Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
         // TODO: use this.Content to load your game content here
         player = new Player(texture, bulletTexture, minigunTexture);
-        enemies.Add(new Enemy(enemyTexture, new Vector2( 0, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2( 50, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(100, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(150, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(200, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(250, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(300, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(350, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(400, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(450, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(500, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(550, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(600, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(650, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(700, 25)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(750, 25)));   
-          enemies.Add(new Enemy(enemyTexture, new Vector2( 0, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2( 50, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(100, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(150, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(200, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(250, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(300, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(350, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(400, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(450, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(500, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(550, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(600, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(650, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(700, 75)));
-        enemies.Add(new Enemy(enemyTexture, new Vector2(750, 75))); 
+        int numberOfEnemies = 10;
+        int spacing = 75;
+        int startX = 0;
+        int y = 25;
+        for (int i = 0; i < numberOfEnemies; i++)
+            {
+             Vector2 position = new Vector2(startX + i * spacing, y);
+             enemies.Add(new Enemy(enemyTexture, position));
+            }
     }
 
     protected override void Update(GameTime gameTime)
@@ -85,8 +62,11 @@ public class Game1 : Game
 
         foreach(var enemy in enemies)
             enemy.Update(gameTime);
+
         BulletCollision();
 
+        RemoveInactiveBullets();
+        
         base.Update(gameTime); 
     }
 
@@ -102,18 +82,39 @@ public class Game1 : Game
 
         base.Draw(gameTime);
     }
+    private void RemoveInactiveBullets()
+    {
+    var bullets = player.Bullets;
+    for (int i = bullets.Count - 1; i >= 0; i--)
+         {
+        if (!bullets[i].IsActive)
+             {
+                 bullets.RemoveAt(i);
+             }
+        }
+    }
 
-    private void BulletCollision(){
-        for(int i = 0; i < player.Bullets.Count; i++ ){
-            for(int j = 0; j < enemies.Count; j++ ){
-                if(player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox)){
-                    player.Bullets[i].Deactivate();
+
+    private void BulletCollision()
+{
+    for (int i = 0; i < player.Bullets.Count; i++)
+    {
+        for (int j = 0; j < enemies.Count; j++)
+        {
+            if (player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
+            {
+                player.Bullets[i].Deactivate();
+                enemies[j].TakeDamage(player.Bullets[i].Damage); 
+
+                if (enemies[j].Health <= 0)
+                {
                     enemies.RemoveAt(j);
-                    i--;
-                    break;
                 }
+
+                break;
             }
         }
-        
     }
+}
+
 }
