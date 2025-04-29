@@ -11,7 +11,9 @@ namespace Alien_Invaders
         private float speed;
         public bool isActive;
         private int damage;
-        public int Damage => damage;
+        public int Damage{
+            get{return damage;}
+        }
       
         private Rectangle hitbox;
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
@@ -50,7 +52,9 @@ namespace Alien_Invaders
                 spriteBatch.Draw(texture, position, Color.White);
             }
         } 
-        public bool IsActive => isActive;
+        public bool IsActive{
+            get{return isActive;}
+        } 
 
     }
 }

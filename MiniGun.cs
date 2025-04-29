@@ -40,7 +40,8 @@ namespace Alien_Invaders
                 spriteBatch.Draw(texture, position, Color.White);
             }
         } 
-        public bool IsActive => isActive;
-    
+        public bool IsActive {
+            get{return isActive;}
+        }
     }
 }

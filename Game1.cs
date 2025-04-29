@@ -1,120 +1,130 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms.VisualStyles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
-namespace Alien_Invaders;
-
-public class Game1 : Game
+namespace Alien_Invaders
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-    private Player player;
-    List<Enemy> enemies = new List<Enemy>();
-
-
-
-    public Game1()
+    public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        graphics = new GraphicsDeviceManager(this);
-        graphics.ToggleFullScreen();
-        Content.RootDirectory = "Content";
-        IsMouseVisible = false;
-        
-    }
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private Player player;
+        List<Enemy> enemies = new List<Enemy>();
+        private double enemySpawnTimer = 0.0;
+        private double spawnInterval = 3.0;
+        private Random r = new Random();
 
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
-       
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-        Texture2D texture = Content.Load<Texture2D> ("Images/skeppet");
-        Texture2D bulletTexture = Content.Load<Texture2D> ("Images/Bull1");
-        Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
-        Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
-        // TODO: use this.Content to load your game content here
-        player = new Player(texture, bulletTexture, minigunTexture);
-        int numberOfEnemies = 10;
-        int spacing = 75;
-        int startX = 0;
-        int y = 25;
-        for (int i = 0; i < numberOfEnemies; i++)
-            {
-             Vector2 position = new Vector2(startX + i * spacing, y);
-             enemies.Add(new Enemy(enemyTexture, position));
-            }
-    }
-
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
-        // TODO: Add your update logic here
-        player.Update(gameTime);
-
-        foreach(var enemy in enemies)
-            enemy.Update(gameTime);
-
-        BulletCollision();
-
-        RemoveInactiveBullets();
-        
-        base.Update(gameTime); 
-    }
-
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.Black);
-        _spriteBatch.Begin();
-        player.Draw(_spriteBatch);
-         foreach(var enemy in enemies)
-            enemy.Draw(_spriteBatch);
-        _spriteBatch.End();
-        // TODO: Add your drawing code here
-
-        base.Draw(gameTime);
-    }
-    private void RemoveInactiveBullets()
-    {
-    var bullets = player.Bullets;
-    for (int i = bullets.Count - 1; i >= 0; i--)
-         {
-        if (!bullets[i].IsActive)
-             {
-                 bullets.RemoveAt(i);
-             }
-        }
-    }
-
-
-    private void BulletCollision()
-{
-    for (int i = 0; i < player.Bullets.Count; i++)
-    {
-        for (int j = 0; j < enemies.Count; j++)
+        public Game1()
         {
-            if (player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox))
-            {
-                player.Bullets[i].Deactivate();
-                enemies[j].TakeDamage(player.Bullets[i].Damage); 
+            GraphicsDeviceManager graphics;
+            graphics = new GraphicsDeviceManager(this);
+            graphics.ToggleFullScreen();
+            Content.RootDirectory = "Content";
+            IsMouseVisible = false;
+        }
 
-                if (enemies[j].Health <= 0)
-                {
-                    enemies.RemoveAt(j);
-                }
+        protected override void Initialize()
+        {
+            // TODO: Add your initialization logic here
+            base.Initialize();
+        }
 
-                break;
+        protected override void LoadContent()
+        {
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Texture2D texture = Content.Load<Texture2D>("Images/skeppet");
+            Texture2D bulletTexture = Content.Load<Texture2D>("Images/Bull1");
+            Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
+            Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
+
+            // TODO: use this.Content to load your game content here
+            player = new Player(texture, bulletTexture, minigunTexture);
+
+            int numberOfEnemies = 10;
+            int spacing = 75;
+            int startX = 0;
+            int y = 25;
+            for (int i = 0; i < numberOfEnemies; i++){
+                Vector2 position = new Vector2(startX + i * spacing, y);
+                enemies.Add(new Enemy(enemyTexture, position));
             }
         }
-    }
-}
 
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            // Update game elements
+            player.Update(gameTime);
+
+            foreach (var enemy in enemies)
+                enemy.Update(gameTime);
+
+            BulletCollision();
+            RemoveInactiveBullets();
+
+            enemySpawnTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (enemySpawnTimer >= spawnInterval)
+            {
+                enemySpawnTimer = 0.0;
+                SpawnEnemy();
+            }
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Black);
+            _spriteBatch.Begin();
+            player.Draw(_spriteBatch);
+
+            foreach (var enemy in enemies)
+                enemy.Draw(_spriteBatch);
+
+            _spriteBatch.End();
+            base.Draw(gameTime);
+        }
+
+        private void RemoveInactiveBullets()
+        {
+            var bullets = player.Bullets;
+            for (int i = bullets.Count - 1; i >= 0; i--){
+                if (!bullets[i].IsActive){
+                    bullets.RemoveAt(i);
+                }
+            }
+        }
+
+        private void BulletCollision()
+        {
+            for (int i = 0; i < player.Bullets.Count; i++)
+            {
+                for (int j = 0; j < enemies.Count; j++){
+                    if (player.Bullets[i].Hitbox.Intersects(enemies[j].Hitbox)){
+                        player.Bullets[i].Deactivate();
+                        enemies[j].TakeDamage(player.Bullets[i].Damage);
+
+                        if (enemies[j].Health <= 0)
+                        {
+                            enemies.RemoveAt(j);
+                        }
+
+                        break; 
+                    }
+                }
+            }
+        }
+
+        private void SpawnEnemy()
+        {
+            Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
+            int randomX = r.Next(0, 650); 
+            Vector2 spawnPosition = new Vector2(randomX, 25); 
+            enemies.Add(new Enemy(enemyTexture, spawnPosition));
+        }
+    }
 }

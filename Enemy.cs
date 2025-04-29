@@ -11,7 +11,9 @@ namespace Alien_Invaders
         private Rectangle hitbox;
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
         private int health;
-        public int Health => health;
+        public int Health{
+            get{return health;}
+        }
         
 
         public Enemy(Texture2D enemyTexture, Vector2 position, int health = 20){
