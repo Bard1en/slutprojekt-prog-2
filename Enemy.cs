@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Alien_Invaders
 {
-    public class Enemy
+    public class Enemy 
     {
         private Texture2D enemyTexture; 
         private Vector2 enemyPosition;
