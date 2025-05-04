@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Alien_Invaders
 {
-    public class Bullet
+    public class Bullet 
     {
         private Texture2D texture;
         private Vector2 position;
