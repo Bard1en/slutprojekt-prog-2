@@ -13,7 +13,7 @@ namespace Alien_Invaders
         private Player player;
         List<Enemy> enemies = new List<Enemy>();
         private double enemySpawnTimer = 0.0;
-        private double spawnInterval = 3.0;
+        private double spawnDelay = 3.0;
         private Random r = new Random();
 
         public Game1()
@@ -67,7 +67,7 @@ namespace Alien_Invaders
             RemoveInactiveBullets();
 
             enemySpawnTimer += gameTime.ElapsedGameTime.TotalSeconds;
-            if (enemySpawnTimer >= spawnInterval)
+            if (enemySpawnTimer >= spawnDelay)
             {
                 enemySpawnTimer = 0.0;
                 SpawnEnemy();
