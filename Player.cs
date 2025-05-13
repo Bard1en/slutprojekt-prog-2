@@ -18,15 +18,18 @@ namespace Alien_Invaders
         private float shotCdMinigun = 0.1f;
         private float timeLastMinigun = 0f;
         private Rectangle hitbox;
+        private int health;
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
+       
     
         public List<Bullet> Bullets{get{return bullets;}}
-       public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture){
+       public Player(Texture2D texture, Texture2D bulletTexture, Texture2D minigunTexture, int health = 100){
         this.texture = texture;
         this.bulletTexture = bulletTexture;
         this.minigunTexture = minigunTexture;
         position = new Vector2(300,450);
         bullets = new List<Bullet>();
+        this.health = health;
     }
       public void Update(GameTime gameTime){
         timeLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -52,7 +55,7 @@ namespace Alien_Invaders
     private void Shoot(){
         
          Vector2 bulletPosition = new Vector2(position.X + texture.Width / 2 - 13, position.Y); 
-         bullets.Add(new Bullet(bulletTexture, bulletPosition,10));
+         bullets.Add(new Bullet(bulletTexture, bulletPosition,20));
     }
     private void MinigunShoot(){
         Vector2 minigunPosition = new Vector2(position.X + 23, position.Y + 35); //1//
@@ -64,6 +67,10 @@ namespace Alien_Invaders
          minigunPosition = new Vector2(position.X +69, position.Y + 35); //4//
          bullets.Add(new Bullet(minigunTexture, minigunPosition,1));
     }
+    public void TakeDamage(int amount)
+            {  
+                health -= amount;
+            }
      public void Draw(SpriteBatch spriteBatch){
         spriteBatch.Draw(texture, position, Color.White);
          foreach (var bullet in bullets)

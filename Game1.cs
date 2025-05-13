@@ -11,9 +11,11 @@ namespace Alien_Invaders
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Player player;
+        private Texture2D enemyBulletTexture;
+
         List<Enemy> enemies = new List<Enemy>();
         private double enemySpawnTimer = 0.0;
-        private double spawnDelay = 3.0;
+        private double spawnDelay = 1.0;
         private Random r = new Random();
 
         public Game1()
@@ -38,18 +40,16 @@ namespace Alien_Invaders
             Texture2D bulletTexture = Content.Load<Texture2D>("Images/Bull1");
             Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
             Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
+            enemyBulletTexture = Content.Load<Texture2D>("Images/bullet");
 
             // TODO: use this.Content to load your game content here
             player = new Player(texture, bulletTexture, minigunTexture);
 
-            int numberOfEnemies = 10;
-            int spacing = 75;
-            int startX = 0;
-            int y = 25;
-            for (int i = 0; i < numberOfEnemies; i++){
-                Vector2 position = new Vector2(startX + i * spacing, y);
-                enemies.Add(new Enemy(enemyTexture, position));
-            }
+
+            
+             Vector2 position = new Vector2(25,250);
+             enemies.Add(new Enemy(enemyTexture, enemyBulletTexture, position));
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -123,8 +123,9 @@ namespace Alien_Invaders
         {
             Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
             int randomX = r.Next(0, 650); 
-            Vector2 spawnPosition = new Vector2(randomX, 25); 
-            enemies.Add(new Enemy(enemyTexture, spawnPosition));
+            int randomY = r.Next(0,100);
+            Vector2 spawnPosition = new Vector2(randomX, randomY); 
+            enemies.Add(new Enemy(enemyTexture,enemyBulletTexture, spawnPosition));
         }
     }
 }
