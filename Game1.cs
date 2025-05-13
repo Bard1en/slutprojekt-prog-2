@@ -64,7 +64,9 @@ namespace Alien_Invaders
                 enemy.Update(gameTime);
 
             BulletCollision();
+            EnemyBulletCollision();
             RemoveInactiveBullets();
+            
 
             enemySpawnTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (enemySpawnTimer >= spawnDelay)
@@ -118,6 +120,26 @@ namespace Alien_Invaders
                 }
             }
         }
+                private void EnemyBulletCollision()
+        {
+            for (int j = 0; j < enemies.Count; j++){
+                for (int i = 0; i < enemies[j].Enemybullets.Count; i++)
+                {
+                        if (player.Hitbox.Intersects(enemies[j].Enemybullets[i].Hitbox)){
+        
+                        player.TakeDamage(enemies[j].Enemybullets[i].Damage);
+
+                        if (player.Health <= 0)
+                        {
+                            Console.WriteLine("GAME OVER");
+                        }
+
+                        break; 
+                    }
+                }
+            }
+        }
+
 
         private void SpawnEnemy()
         {

@@ -19,6 +19,9 @@ namespace Alien_Invaders
         private float timeLastMinigun = 0f;
         private Rectangle hitbox;
         private int health;
+        public int Health{
+            get{return health;}
+        }
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
        
     
@@ -32,6 +35,7 @@ namespace Alien_Invaders
         this.health = health;
     }
       public void Update(GameTime gameTime){
+        hitbox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         timeLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
         timeLastMinigun += (float)gameTime.ElapsedGameTime.TotalSeconds;
         KeyboardState kState = Keyboard.GetState();

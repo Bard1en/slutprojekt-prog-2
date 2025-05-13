@@ -15,6 +15,9 @@ namespace Alien_Invaders
         private float timeLastShot = 0f;
         private float shotCooldown = 5f;
         private List<EnemyBullet> enemybullets;
+        public List<EnemyBullet> Enemybullets{
+            get{return enemybullets;}
+        }
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
         private int health;
         public int Health{

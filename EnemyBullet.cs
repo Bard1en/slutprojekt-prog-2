@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,7 +19,7 @@ namespace Alien_Invaders
         private Rectangle hitbox;
         public Rectangle Hitbox{get{return hitbox;}set{hitbox=value;}}
         
-        public EnemyBullet(Texture2D texture, Vector2 startPosition, int damage)
+        public EnemyBullet(Texture2D texture, Vector2 startPosition, int damage = 5)
         {
             this.texture = texture;
             this.position = startPosition;
@@ -30,6 +31,7 @@ namespace Alien_Invaders
         public void Deactivate(){
             isActive = false;
         }
+
         public void Update()
         {
             if (isActive)
@@ -38,7 +40,7 @@ namespace Alien_Invaders
 
                 Hitbox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
 
-                if (position.Y > 800) 
+                if (position.Y < 0) 
                 {
                     Deactivate();
                 }
