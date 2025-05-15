@@ -12,7 +12,7 @@ namespace Alien_Invaders
         private SpriteBatch _spriteBatch;
         private Player player;
         private Texture2D enemyBulletTexture;
-
+        Texture2D backgroundTexture;
         List<Enemy> enemies = new List<Enemy>();
         private double enemySpawnTimer = 0.0;
         private double spawnDelay = 1.0;
@@ -41,6 +41,8 @@ namespace Alien_Invaders
             Texture2D minigunTexture = Content.Load<Texture2D>("Images/Minigun");
             Texture2D enemyTexture = Content.Load<Texture2D>("Images/Alienskepp");
             enemyBulletTexture = Content.Load<Texture2D>("Images/bullet");
+            backgroundTexture = Content.Load<Texture2D>("Images/background");
+
 
             // TODO: use this.Content to load your game content here
             player = new Player(texture, bulletTexture, minigunTexture);
@@ -66,7 +68,6 @@ namespace Alien_Invaders
             BulletCollision();
             EnemyBulletCollision();
             RemoveInactiveBullets();
-            
 
             enemySpawnTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (enemySpawnTimer >= spawnDelay)
@@ -82,6 +83,9 @@ namespace Alien_Invaders
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
+           _spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0,GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height),Color.White);
+
+
             player.Draw(_spriteBatch);
 
             foreach (var enemy in enemies)
@@ -100,6 +104,7 @@ namespace Alien_Invaders
                 }
             }
         }
+
 
         private void BulletCollision()
         {
@@ -128,10 +133,12 @@ namespace Alien_Invaders
                         if (player.Hitbox.Intersects(enemies[j].Enemybullets[i].Hitbox)){
         
                         player.TakeDamage(enemies[j].Enemybullets[i].Damage);
+                        enemies[j].Enemybullets[i].Deactivate();
 
                         if (player.Health <= 0)
                         {
                             Console.WriteLine("GAME OVER");
+                            Exit();
                         }
 
                         break; 

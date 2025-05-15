@@ -4,13 +4,15 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/slutprojekt-prog-2/Content/Images/Alienskepp.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/slutprojekt-prog-2/Content/Images/bull1.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/slutprojekt-prog-2/Content/Images/bullet.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/slutprojekt-prog-2/Content/Images/Minigun.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/slutprojekt-prog-2/Content/Images/skeppet.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/Alienskepp.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/background.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/bull1.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/bullet.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/Minigun.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/slutprojekt-prog-2/Content/Images/skeppet.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

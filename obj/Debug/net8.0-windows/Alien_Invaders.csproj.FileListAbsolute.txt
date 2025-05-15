@@ -303,3 +303,5 @@ C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\slutprojekt-prog-2\obj\Debug\
 C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\slutprojekt-prog-2\obj\Debug\net8.0-windows\Alien_Invaders.pdb
 C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\slutprojekt-prog-2\obj\Debug\net8.0-windows\Alien_Invaders.genruntimeconfig.cache
 C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\slutprojekt-prog-2\obj\Debug\net8.0-windows\ref\Alien_Invaders.dll
+C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\bin\Debug\net8.0-windows\Content\GameFont.xnb
+C:\Users\Admin\Documents\GitHub\slutprojekt-prog-2\bin\Debug\net8.0-windows\Content\Images\background.xnb
